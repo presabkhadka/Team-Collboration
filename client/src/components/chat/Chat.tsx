@@ -22,7 +22,9 @@ export const Chat: React.FC = ({}) => {
         ))}
         <div ref={chatScrollUp}></div>
       </div>
-      <ChatInput />
+      <div className="pb-10">
+        <ChatInput />
+      </div>
     </div>
   );
 };

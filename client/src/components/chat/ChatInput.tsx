@@ -3,17 +3,24 @@ import { RoomContext } from "../../context/RoomContext";
 
 export const ChatInput: React.FC = () => {
   const [message, setMessage] = useState("");
-  const {sendMessage} = useContext(RoomContext);
+  const { sendMessage } = useContext(RoomContext);
+
   return (
     <div>
-      <form onSubmit={(e)=>{
-        e.preventDefault();
-        sendMessage(message);
-        setMessage("");
-      }}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (message.trim() === "") return;
+          sendMessage(message);
+          setMessage("");
+        }}
+      >
         <div className="flex justify-between">
           <textarea
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              e.preventDefault();
+              setMessage(e.target.value);
+            }}
             value={message}
             className="border rounded p-2 resize-none mx-2 flex-1"
           />
