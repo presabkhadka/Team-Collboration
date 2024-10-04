@@ -18,7 +18,6 @@ export const Room = () => {
     shareScreen,
     screenSharingId,
     setRoomId,
-    toggleChat,
   } = useContext(RoomContext);
 
   useEffect(() => {
@@ -38,13 +37,13 @@ export const Room = () => {
   const { [screenSharingId]: sharing, ...peersToShow } = peers;
 
   return (
-    <div className="h-screen">
+    <div className="h-screen pb-24 overflow-hidden">
       <div className="bg-blue-500 p-4 text-white">
         <div>Room id :- {id}</div>
       </div>
       <div className="grid grid-cols-12 h-full overflow-hidden">
         <div className="col-span-full h-full flex flex-col overflow-hidden">
-          <div className="flex grow h-full overflow-hidden">
+          <div className="flex grow h-full w-full overflow-hidden">
             {screenSharingVideo && (
               <div className="w-4/5 pr-4 overflow-hidden">
                 <VideoPlayer stream={screenSharingVideo} />
@@ -74,9 +73,9 @@ export const Room = () => {
         </div>
       </div>
 
-      <div className="h-24 fixed bottom-0 p-4 w-full flex justify-center items-center border-t-2 bg-white gap-2 ">
+      <div className="h-24 fixed bottom-0 p-4 w-full flex justify-center items-center border-t-2 bg-white gap-2">
         <ShareScreenButton onClick={shareScreen} />
-        <ChatButton/>
+        <ChatButton />
         <CanvasButton />
       </div>
     </div>
