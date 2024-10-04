@@ -5,22 +5,30 @@ export const ChatInput: React.FC = () => {
   const [message, setMessage] = useState("");
   const { sendMessage } = useContext(RoomContext);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (message.trim() === "") return;
+    sendMessage(message);
+    setMessage("");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
   return (
     <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (message.trim() === "") return;
-          sendMessage(message);
-          setMessage("");
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <div className="flex justify-between">
           <textarea
             onChange={(e) => {
               e.preventDefault();
               setMessage(e.target.value);
             }}
+            onKeyDown={handleKeyDown}
             value={message}
             className="border rounded p-2 resize-none mx-2 flex-1"
           />
