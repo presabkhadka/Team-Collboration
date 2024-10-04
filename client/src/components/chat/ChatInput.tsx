@@ -11,11 +11,11 @@ export const ChatInput: React.FC = () => {
         sendMessage(message);
         setMessage("");
       }}>
-        <div className="flex">
+        <div className="flex justify-between">
           <textarea
             onChange={(e) => setMessage(e.target.value)}
             value={message}
-            className="border rounded p-2 resize-none mx-2"
+            className="border rounded p-2 resize-none mx-2 flex-1"
           />
           <button
             type="submit"
