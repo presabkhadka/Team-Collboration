@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+ import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RoomContext } from "../context/RoomContext";
 import { VideoPlayer } from "../components/VideoPlayer";
@@ -7,6 +7,7 @@ import { ChatButton } from "../components/ChatButton";
 import { Chat } from "../components/chat/Chat";
 import { PeerState } from "../reducers/peerReducer";
 import { NameInput } from "../common/Name";
+import { CanvasButton } from "../components/CanvasButton";
 
 export const Room = () => {
   const { id } = useParams();
@@ -87,6 +88,7 @@ export const Room = () => {
       <div className="h-24 fixed bottom-0 p-4 w-full flex justify-center items-center border-t-2 bg-white gap-2 ">
         <ShareScreenButton onClick={shareScreen} />
         <ChatButton onClick={toggleChat} />
+        <CanvasButton/>
       </div>
     </div>
   );
