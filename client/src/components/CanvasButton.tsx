@@ -8,9 +8,13 @@ import {
 } from "../components/ui/sheet";
 
 import { Tldraw } from "tldraw";
+import {useSyncDemo} from "@tldraw/sync"
 import "tldraw/tldraw.css";
 
 export const CanvasButton: React.FC = () => {
+
+  const store = useSyncDemo({ roomId: "teammonitor"})
+
   return (
     <Sheet>
       <SheetTrigger className="bg-blue-400 p-4 rounded-full text-xl text-white hover:bg-blue-600">
@@ -31,10 +35,10 @@ export const CanvasButton: React.FC = () => {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Canvas</SheetTitle>
+          <SheetTitle className="mx-2">Collborative Canvas</SheetTitle>
         </SheetHeader>
         <div className="h-full w-full">
-            <Tldraw/>
+            <Tldraw store={store}/>
         </div>
       </SheetContent>
     </Sheet>
