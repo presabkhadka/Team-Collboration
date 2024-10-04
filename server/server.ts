@@ -15,12 +15,6 @@ const io = new Server(server, {
   },
 });
 
-app.get("/", (req, res) => {
-  console.log("route hit successful");
-  
-  res.send("Test route");
-});
-
 io.on("connection", (socket) => {
   console.log("User connected to socket.");
   RoomHandler(socket);
