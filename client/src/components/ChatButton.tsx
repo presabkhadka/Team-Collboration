@@ -10,7 +10,7 @@ import { Chat } from "./chat/Chat";
 export const ChatButton: React.FC = () => {
   return (
     <Sheet>
-      <SheetTrigger className="bg-blue-400 p-4 rounded-full text-xl text-white hover:bg-blue-600">
+      <SheetTrigger className="bg-blue-400 p-4 rounded-full text-xl text-white hover:bg-pink-600">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
