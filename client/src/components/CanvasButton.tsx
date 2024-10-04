@@ -1,19 +1,17 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "../components/ui/sheet";
 
 import { Tldraw } from "tldraw";
-import {useSyncDemo} from "@tldraw/sync"
+import { useSyncDemo } from "@tldraw/sync";
 import "tldraw/tldraw.css";
 
 export const CanvasButton: React.FC = () => {
-
-  const store = useSyncDemo({ roomId: "teammonitor"})
+  const store = useSyncDemo({ roomId: "teammonitor" });
 
   return (
     <Sheet>
@@ -38,7 +36,7 @@ export const CanvasButton: React.FC = () => {
           <SheetTitle className="mx-2">Collborative Canvas</SheetTitle>
         </SheetHeader>
         <div className="h-full w-full">
-            <Tldraw store={store}/>
+          <Tldraw store={store} />
         </div>
       </SheetContent>
     </Sheet>

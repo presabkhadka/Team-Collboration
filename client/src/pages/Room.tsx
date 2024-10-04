@@ -4,7 +4,6 @@ import { RoomContext } from "../context/RoomContext";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { ShareScreenButton } from "../components/ShareScreenButton";
 import { ChatButton } from "../components/ChatButton";
-import { Chat } from "../components/chat/Chat";
 import { PeerState } from "../reducers/peerReducer";
 import { CanvasButton } from "../components/CanvasButton";
 
@@ -20,7 +19,6 @@ export const Room = () => {
     screenSharingId,
     setRoomId,
     toggleChat,
-    chat,
   } = useContext(RoomContext);
 
   useEffect(() => {
@@ -41,27 +39,25 @@ export const Room = () => {
 
   return (
     <div className="h-screen">
-      <div className="bg-blue-500 p-4 text-white sticky top-0  overflow-hidden">
+      <div className="bg-blue-500 p-4 text-white">
         <div>Room id :- {id}</div>
       </div>
-      <div className="grid grid-cols-12 h-full ">
-        <div className="col-span-full h-full flex flex-col">
-          <div className="flex grow h-full">
+      <div className="grid grid-cols-12 h-full overflow-hidden">
+        <div className="col-span-full h-full flex flex-col overflow-hidden">
+          <div className="flex grow h-full overflow-hidden">
             {screenSharingVideo && (
-              <div className="w-4/5 pr-4">
+              <div className="w-4/5 pr-4 overflow-hidden">
                 <VideoPlayer stream={screenSharingVideo} />
               </div>
             )}
             <div
-              className={`grid  gap-4 ${
+              className={`grid gap-4 ${
                 screenSharingVideo ? "w-1/5 grid-cols-1" : "grid-cols-4"
-              }`}
+              } overflow-y-auto`}
             >
               {screenSharingId !== me?.id && (
                 <div>
                   <VideoPlayer stream={stream} />
-                  {/* name change garne bhaye
-                  <NameInput /> */}
                 </div>
               )}
 
@@ -76,17 +72,11 @@ export const Room = () => {
             </div>
           </div>
         </div>
-        {/* <div className="col-span-3 h-full">
-          {chat.isChatOpen && (
-            <div className="border-l-2 pb-24 h-full ">
-              <Chat />
-            </div>
-          )}
-        </div> */}
       </div>
+
       <div className="h-24 fixed bottom-0 p-4 w-full flex justify-center items-center border-t-2 bg-white gap-2 ">
         <ShareScreenButton onClick={shareScreen} />
-        <ChatButton onClick={toggleChat} />
+        <ChatButton/>
         <CanvasButton />
       </div>
     </div>

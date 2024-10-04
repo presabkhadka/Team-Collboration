@@ -7,7 +7,7 @@ import {
 } from "../components/ui/sheet";
 import { Chat } from "./chat/Chat";
 
-export const ChatButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
+export const ChatButton: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger className="bg-blue-400 p-4 rounded-full text-xl text-white hover:bg-blue-600">
