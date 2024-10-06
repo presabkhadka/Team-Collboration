@@ -19,7 +19,7 @@ import {
   toggleChatAction,
 } from "../reducers/chatActions";
 
-export const RoomContext = createContext<null | any>(null);
+export const RoomContext = createContext<null | unknown>(null);
 
 const ws = socketIOClient(WS);
 
@@ -48,7 +48,7 @@ export const RoomProvider: React.FC = ({ children }) => {
     participants: Record<string, { userName: string }>;
   }) => {
     console.log({ participants });
-    dispatch(addAllPeersAction(participants))
+    dispatch(addAllPeersAction(participants));
   };
 
   const removePeer = (peerId: string) => {
@@ -58,7 +58,7 @@ export const RoomProvider: React.FC = ({ children }) => {
   const switchStream = (stream: MediaStream) => {
     setStream(stream);
     setScreenSharingId(me?.id || "");
-    Object.values(me?.connections).forEach((connection: any) => {
+    Object.values(me?.connections).forEach((connection: unknown) => {
       const videoTrack = stream
         ?.getTracks()
         .find((track) => track.kind === "video");
@@ -184,7 +184,7 @@ export const RoomProvider: React.FC = ({ children }) => {
       value={{
         ws,
         me,
-        stream,
+        stream: stream || null,
         peers,
         chat,
         shareScreen,

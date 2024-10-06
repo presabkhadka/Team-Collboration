@@ -6,6 +6,7 @@ import { ShareScreenButton } from "../components/ShareScreenButton";
 import { ChatButton } from "../components/ChatButton";
 import { PeerState } from "../reducers/peerReducer";
 import { CanvasButton } from "../components/CanvasButton";
+import { ToggleButton } from "../components/ToggleButton";
 
 export const Room = () => {
   const { id } = useParams();
@@ -74,6 +75,7 @@ export const Room = () => {
       </div>
 
       <div className="h-24 fixed bottom-0 p-4 w-full flex justify-center items-center border-t-2 bg-white gap-2">
+        <ToggleButton />
         <ShareScreenButton onClick={shareScreen} />
         <ChatButton />
         <CanvasButton />

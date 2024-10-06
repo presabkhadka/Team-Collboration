@@ -5,8 +5,8 @@ const rooms: Record<string, Record<string, IUser>> = {};
 const chats: Record<string, IMessage[]> = {};
 
 interface IUser {
-  peerId: string,
-  userName: string,
+  peerId: string;
+  userName: string;
 }
 
 interface RoomParams {
@@ -36,7 +36,7 @@ export const RoomHandler = (socket: Socket) => {
     if (!chats[roomId]) chats[roomId] = [];
     socket.emit("get-messages", chats[roomId]);
     console.log(`${userName} joined the room ${roomId}`, peerId);
-    rooms[roomId][peerId] = {peerId, userName}
+    rooms[roomId][peerId] = { peerId, userName };
     socket.join(roomId);
     socket.to(roomId).emit("user-joined", { peerId, userName });
     socket.emit("get-users", {
