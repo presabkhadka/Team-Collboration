@@ -7,6 +7,7 @@ import { ChatButton } from "../components/ChatButton";
 import { PeerState } from "../reducers/peerReducer";
 import { CanvasButton } from "../components/CanvasButton";
 import { ToggleButton } from "../components/ToggleButton";
+import { EndButton } from "../components/EndButton";
 
 export const Room = () => {
   const { id } = useParams();
@@ -79,6 +80,7 @@ export const Room = () => {
         <ShareScreenButton onClick={shareScreen} />
         <ChatButton />
         <CanvasButton />
+        <EndButton/>
       </div>
     </div>
   );
