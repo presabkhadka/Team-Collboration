@@ -20,6 +20,7 @@ export const Room = () => {
     shareScreen,
     screenSharingId,
     setRoomId,
+    screenStream,
   } = useContext(RoomContext);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export const Room = () => {
   console.log({ screenSharingId });
 
   const screenSharingVideo =
-    screenSharingId === me?.id ? stream : peers[screenSharingId]?.stream;
+    screenSharingId === me?.id ? screenStream : peers[screenSharingId]?.stream;
 
   const { [screenSharingId]: sharing, ...peersToShow } = peers;
 
@@ -80,7 +81,7 @@ export const Room = () => {
         <ShareScreenButton onClick={shareScreen} />
         <ChatButton />
         <CanvasButton />
-        <EndButton/>
+        <EndButton />
       </div>
     </div>
   );

@@ -30,6 +30,7 @@ export const RoomProvider: React.FC = ({ children }) => {
     sessionStorage.getItem("userName") || ""
   );
   const [stream, setStream] = useState<MediaStream>();
+  const [screenStream, setScreenStream] = useState<MediaStream>();
   const [peers, dispatch] = useReducer(PeersReducer, {});
   const [chat, chatDispatch] = useReducer(chatReducer, {
     messages: [],
@@ -73,28 +74,31 @@ export const RoomProvider: React.FC = ({ children }) => {
   };
 
   const switchStream = (stream: MediaStream) => {
-    setStream(stream);
     setScreenSharingId(me?.id || "");
-    Object.values(me?.connections).forEach((connection: unknown) => {
-      const videoTrack = stream
-        ?.getTracks()
-        .find((track) => track.kind === "video");
-      connection[0].peerConnection
-        .getSenders()[1]
-        .replaceTrack(videoTrack)
-        .catch((err: any) => console.error(err));
+    Object.values(me?.connections).forEach((connection: any) => {
+        const videoTrack: any = stream
+            ?.getTracks()
+            .find((track) => track.kind === "video");
+        connection[0].peerConnection
+            .getSenders()
+            .find((sender: any) => sender.track.kind === "video")
+            .replaceTrack(videoTrack)
+            .catch((err: any) => console.error(err));
     });
-  };
+};
 
-  const shareScreen = () => {
-    if (screenSharingId) {
+const shareScreen = () => {
+  if (screenSharingId) {
       navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
-        .then(switchStream);
-    } else {
-      navigator.mediaDevices.getDisplayMedia({}).then(switchStream);
-    }
-  };
+          .getUserMedia({ video: true, audio: true })
+          .then(switchStream);
+  } else {
+      navigator.mediaDevices.getDisplayMedia({}).then((stream) => {
+          switchStream(stream);
+          setScreenStream(stream);
+      });
+  }
+};
 
   const sendMessage = (message: string) => {
     const messageData: IMessage = {
@@ -205,6 +209,7 @@ export const RoomProvider: React.FC = ({ children }) => {
         peers,
         chat,
         shareScreen,
+        screenStream,
         screenSharingId,
         setRoomId,
         toggleChat,
