@@ -55,6 +55,22 @@ export const RoomProvider: React.FC = ({ children }) => {
     dispatch(removePeerStreamAction(peerId));
   };
 
+  const endCall = ()=> {
+    if (stream){
+      stream.getTracks().forEach((track) => track.stop());
+    }
+
+    if (roomId) {
+      ws.emit("end-call", roomId);
+    }
+
+    if (me) {
+      me.destroy();
+    }
+
+    navigate("/")
+  }
+
   const switchStream = (stream: MediaStream) => {
     setStream(stream);
     setScreenSharingId(me?.id || "");
@@ -194,6 +210,7 @@ export const RoomProvider: React.FC = ({ children }) => {
         sendMessage,
         userName,
         setUserName,
+        endCall,
       }}
     >
       {children}
