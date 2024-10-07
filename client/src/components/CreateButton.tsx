@@ -12,7 +12,7 @@ export const Join: React.FC = () => {
       <NameInput />
       <button
         onClick={createRoom}
-        className="bg-custom-gradient p-2 rounded-lg text-xl text-white hover:animate-pulse"
+        className="bg-custom-gradient p-2 rounded-lg text-xl border-2 text-white hover:border-red-500"
       >
         Start new meeting
       </button>
