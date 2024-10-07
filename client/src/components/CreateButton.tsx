@@ -8,14 +8,14 @@ export const Join: React.FC = () => {
     ws.emit("create-room");
   };
   return (
-    <div className="flex flex-col">
-    <NameInput/>
-    <button
-      onClick={createRoom}
-      className="bg-custom-gradient p-2 rounded-lg text-xl text-white hover:animate-pulse"
-    >
-      Start new meeting
-    </button>
+    <div className="flex flex-col bg-white gap-4">
+      <NameInput />
+      <button
+        onClick={createRoom}
+        className="bg-custom-gradient p-2 rounded-lg text-xl text-white hover:animate-pulse"
+      >
+        Start new meeting
+      </button>
     </div>
   );
 };
