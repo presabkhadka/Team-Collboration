@@ -55,8 +55,8 @@ export const RoomProvider: React.FC = ({ children }) => {
     dispatch(removePeerStreamAction(peerId));
   };
 
-  const endCall = ()=> {
-    if (stream){
+  const endCall = () => {
+    if (stream) {
       stream.getTracks().forEach((track) => track.stop());
     }
 
@@ -68,8 +68,9 @@ export const RoomProvider: React.FC = ({ children }) => {
       me.destroy();
     }
 
-    navigate("/")
-  }
+    navigate("/");
+    location.reload(true);
+  };
 
   const switchStream = (stream: MediaStream) => {
     setStream(stream);
